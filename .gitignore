@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Build files
+dist/
+build/
+coverage/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Uploaded files
+uploads/
+
+# Operating system
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*

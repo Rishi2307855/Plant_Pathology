@@ -4,6 +4,9 @@ const cors = require("cors");
 const authRoutes = require("./routes/authRoutes");
 const plantRoutes = require("./routes/plantRoutes");
 const diseaseRoutes = require("./routes/diseaseRoutes");
+const queryRoutes = require("./routes/queryRoutes");
+const uploadRoutes = require("./routes/uploadRoutes");
+const predictionRoutes = require("./routes/predictionRoutes");
 
 const app = express();
 
@@ -19,5 +22,7 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/plants", plantRoutes);
 app.use("/api/diseases", diseaseRoutes);
-
+app.use("/api/queries", queryRoutes);
+app.use("/api/uploads", uploadRoutes);
+app.use("/api/predictions", predictionRoutes);
 module.exports = app;

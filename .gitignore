@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# Environment secrets
+.env
+.env.*
+!.env.example
+
+# Python environment
+.venv/
+**/.venv/
+__pycache__/
+*.pyc
+
+# ML datasets
+ml/data/
+
+# Keep required trained model
+!ml/models/best_tomato_finetuned.keras
+!ml/models/class_names.json

@@ -1,0 +1,79 @@
+{
+    "test_accuracy": 0.8892552852630615,
+    "test_loss": 0.355967253446579,
+    "classification_report": {
+        "Tomato___Bacterial_spot": {
+            "precision": 0.867237687366167,
+            "recall": 0.9288990825688074,
+            "f1-score": 0.8970099667774086,
+            "support": 436.0
+        },
+        "Tomato___Early_blight": {
+            "precision": 0.8343558282208589,
+            "recall": 0.6325581395348837,
+            "f1-score": 0.7195767195767195,
+            "support": 215.0
+        },
+        "Tomato___Late_blight": {
+            "precision": 0.9461756373937678,
+            "recall": 0.8906666666666667,
+            "f1-score": 0.9175824175824175,
+            "support": 375.0
+        },
+        "Tomato___Leaf_Mold": {
+            "precision": 0.7397260273972602,
+            "recall": 0.9418604651162791,
+            "f1-score": 0.8286445012787724,
+            "support": 172.0
+        },
+        "Tomato___Septoria_leaf_spot": {
+            "precision": 0.8445121951219512,
+            "recall": 0.8219584569732937,
+            "f1-score": 0.8330827067669173,
+            "support": 337.0
+        },
+        "Tomato___Spider_mites Two-spotted_spider_mite": {
+            "precision": 0.8639240506329114,
+            "recall": 0.853125,
+            "f1-score": 0.8584905660377359,
+            "support": 320.0
+        },
+        "Tomato___Target_Spot": {
+            "precision": 0.7130434782608696,
+            "recall": 0.8541666666666666,
+            "f1-score": 0.7772511848341233,
+            "support": 288.0
+        },
+        "Tomato___Tomato_Yellow_Leaf_Curl_Virus": {
+            "precision": 0.9970703125,
+            "recall": 0.9281818181818182,
+            "f1-score": 0.9613935969868174,
+            "support": 1100.0
+        },
+        "Tomato___Tomato_mosaic_virus": {
+            "precision": 1.0,
+            "recall": 0.8636363636363636,
+            "f1-score": 0.926829268292683,
+            "support": 66.0
+        },
+        "Tomato___healthy": {
+            "precision": 0.885558583106267,
+            "recall": 0.9848484848484849,
+            "f1-score": 0.9325681492109039,
+            "support": 330.0
+        },
+        "accuracy": 0.8892552899148117,
+        "macro avg": {
+            "precision": 0.8691603800000053,
+            "recall": 0.8699901144193264,
+            "f1-score": 0.8652429077344499,
+            "support": 3639.0
+        },
+        "weighted avg": {
+            "precision": 0.8961185433819602,
+            "recall": 0.8892552899148117,
+            "f1-score": 0.8898573710399749,
+            "support": 3639.0
+        }
+    }
+}

@@ -1,0 +1,165 @@
+
+.register-page {
+  min-height: calc(100vh - 72px);
+  padding: 45px 20px;
+  background: #f5f8f2;
+}
+
+.register-card {
+  width: 100%;
+  max-width: 650px;
+  margin: auto;
+  padding: 38px;
+  background: white;
+  border: 1px solid #e2eadd;
+  border-radius: 20px;
+  box-shadow: 0 10px 35px rgba(23, 64, 40, 0.07);
+}
+
+.register-heading {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.register-icon {
+  display: block;
+  font-size: 38px;
+  margin-bottom: 12px;
+}
+
+.register-eyebrow {
+  color: #398052;
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.register-heading h1 {
+  margin: 10px 0;
+  color: #183d2b;
+  font-size: 30px;
+}
+
+.register-heading p {
+  color: #788579;
+  font-size: 14px;
+}
+
+.register-role {
+  margin-bottom: 22px;
+}
+
+.register-role label,
+.register-field label {
+  display: block;
+  margin-bottom: 8px;
+  color: #294936;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.register-role select,
+.register-field input,
+.register-field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #dce6dc;
+  border-radius: 9px;
+  background: #fcfdfb;
+  color: #294936;
+  font: inherit;
+  outline: none;
+}
+
+.register-role select:focus,
+.register-field input:focus,
+.register-field textarea:focus {
+  border-color: #398052;
+  box-shadow: 0 0 0 3px rgba(57, 128, 82, 0.1);
+}
+
+.register-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.register-field {
+  min-width: 0;
+  margin-bottom: 18px;
+}
+
+.register-field textarea {
+  resize: vertical;
+}
+
+.farmer-fields {
+  margin-top: 18px;
+  padding-top: 22px;
+  border-top: 1px solid #e8eee6;
+}
+
+.farmer-fields h3 {
+  margin-bottom: 20px;
+  color: #183d2b;
+}
+
+.register-error {
+  padding: 12px;
+  margin-bottom: 20px;
+  background: #fff0f0;
+  color: #b42318;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.register-submit {
+  width: 100%;
+  margin-top: 8px;
+  padding: 14px;
+  border: none;
+  border-radius: 9px;
+  background: #194b31;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.register-submit:hover {
+  background: #286b43;
+}
+
+.register-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.register-footer {
+  margin-top: 24px;
+  text-align: center;
+  color: #788579;
+  font-size: 14px;
+}
+
+.register-footer a {
+  color: #286b43;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+@media (max-width: 550px) {
+  .register-card {
+    padding: 25px 18px;
+  }
+
+  .register-fields {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .register-heading h1 {
+    font-size: 25px;
+  }
+}

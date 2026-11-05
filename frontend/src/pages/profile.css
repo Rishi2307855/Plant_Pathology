@@ -1,0 +1,91 @@
+
+.profile-page {
+  min-height: calc(100vh - 72px);
+  padding: 45px 20px;
+  background: #f5f8f2;
+}
+
+.profile-container {
+  max-width: 700px;
+  margin: auto;
+}
+
+.profile-back {
+  color: #286b43;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.profile-card {
+  margin-top: 25px;
+  padding: 40px;
+  background: white;
+  border: 1px solid #e2eadd;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 8px 28px rgba(23, 64, 40, 0.06);
+}
+
+.profile-avatar {
+  width: 85px;
+  height: 85px;
+  margin: 0 auto 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #194b31;
+  color: white;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.profile-card h1 {
+  color: #183d2b;
+  margin-bottom: 8px;
+}
+
+.profile-subtitle {
+  color: #788579;
+}
+
+.profile-info {
+  margin: 30px 0;
+  text-align: left;
+}
+
+.profile-info div {
+  padding: 17px 5px;
+  border-bottom: 1px solid #edf1e9;
+}
+
+.profile-info span {
+  display: block;
+  margin-bottom: 7px;
+  color: #788579;
+  font-size: 13px;
+}
+
+.profile-info strong {
+  color: #234b34;
+  overflow-wrap: anywhere;
+}
+
+.profile-button {
+  display: inline-block;
+  padding: 12px 22px;
+  border-radius: 9px;
+  background: #194b31;
+  color: white;
+  text-decoration: none;
+}
+
+.profile-button:hover {
+  background: #286b43;
+  color: white;
+}
+
+@media (max-width: 550px) {
+  .profile-card {
+    padding: 25px 18px;
+  }
+}

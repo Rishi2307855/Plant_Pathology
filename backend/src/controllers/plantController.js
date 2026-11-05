@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Plant = require("../models/Plant");
+const Plant = require("../models/plant");
 
 // 1. Add Plant
 const createPlant = async (req, res) => {

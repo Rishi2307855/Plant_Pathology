@@ -1,14 +1,15 @@
 
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import api from "../services/api";
 
 function Login() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [formData, setFormData] = useState({
     email: "",
-    password: ""
+    password: "",
   });
 
   const [error, setError] = useState("");
@@ -17,7 +18,7 @@ function Login() {
   const handleChange = (event) => {
     setFormData({
       ...formData,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
@@ -34,12 +35,13 @@ function Login() {
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
 
-      navigate("/");
+      window.dispatchEvent(new Event("auth-change"));
 
+      navigate("/dashboard");
     } catch (error) {
       setError(
         error.response?.data?.message ||
-        "Login failed. Please try again."
+          "Login failed. Please try again."
       );
     } finally {
       setLoading(false);
@@ -55,6 +57,18 @@ function Login() {
           <p>Login to your Plant Pathology account</p>
         </div>
 
+        {/* Registration success message */}
+        {location.state?.registrationSuccess && (
+          <div className="auth-success" role="status">
+            {location.state.registrationSuccess}
+          </div>
+        )}
+{location.state?.resetSuccess && (
+  <div className="auth-success" role="status">
+    {location.state.resetSuccess}
+  </div>
+)}
+        {/* Login error message */}
         {error && (
           <div className="auth-error" role="alert">
             {error}
@@ -89,7 +103,9 @@ function Login() {
               required
             />
           </div>
-
+         <div className="forgot-link">
+  <Link to="/forgot-password">Forgot Password?</Link>
+</div>
           <button
             type="submit"
             className="auth-button"

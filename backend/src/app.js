@@ -7,11 +7,13 @@ const diseaseRoutes = require("./routes/diseaseRoutes");
 const queryRoutes = require("./routes/queryRoutes");
 const uploadRoutes = require("./routes/uploadRoutes");
 const predictionRoutes = require("./routes/predictionRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use("/api/admin", adminRoutes);
 
 app.get("/", (req, res) => {
   res.json({

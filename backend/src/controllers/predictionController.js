@@ -1,7 +1,7 @@
 
-const Prediction = require("../models/Prediction");
-const Plant = require("../models/Plant");
-const Disease = require("../models/Disease");
+const Prediction = require("../models/prediction");
+const Plant = require("../models/plant");
+const Disease = require("../models/disease");
 
 // Convert ML class name into readable disease name
 const formatDiseaseName = (name) => {

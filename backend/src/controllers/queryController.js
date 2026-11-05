@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const Query = require("../models/Query");
-const Farmer = require("../models/Farmer");
+const Query = require("../models/query");
+const Farmer = require("../models/farmer");
 
 // 1. Create Query – User
 const createQuery = async (req, res) => {

@@ -1,0 +1,243 @@
+
+.ask-page {
+  min-height: calc(100vh - 72px);
+  padding: 45px 20px 70px;
+  background: #f5f8f2;
+}
+
+.ask-container {
+  max-width: 950px;
+  margin: auto;
+}
+
+.ask-header {
+  margin-bottom: 30px;
+}
+
+.ask-eyebrow {
+  color: #398052;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.ask-header h1 {
+  color: #183d2b;
+  font-size: 36px;
+  margin: 12px 0;
+}
+
+.ask-header p,
+.ask-form-card > p {
+  color: #718078;
+  line-height: 1.7;
+}
+
+.ask-form-card,
+.query-card {
+  background: white;
+  border: 1px solid #e2eadd;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 5px 18px rgba(23, 64, 40, 0.04);
+}
+
+.ask-form-card h2,
+.my-queries h2 {
+  color: #183d2b;
+  margin: 0 0 8px;
+}
+
+.ask-form-card textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 18px 0;
+  border: 1px solid #dce6dc;
+  border-radius: 10px;
+  resize: vertical;
+  font: inherit;
+  background: #fcfdfb;
+  outline: none;
+}
+
+.ask-form-card textarea:focus {
+  border-color: #398052;
+  box-shadow: 0 0 0 3px rgba(57, 128, 82, 0.1);
+}
+
+.ask-form-card button,
+.farmer-response button {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 9px;
+  background: #194b31;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ask-form-card button:hover,
+.farmer-response button:hover {
+  background: #286b43;
+}
+
+.ask-form-card button:disabled,
+.farmer-response button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.ask-success,
+.ask-error {
+  padding: 13px 16px;
+  border-radius: 9px;
+  margin-top: 18px;
+}
+
+.ask-success {
+  color: #256b3e;
+  background: #e8f5e9;
+}
+
+.ask-error {
+  color: #b42318;
+  background: #fff0f0;
+}
+
+.my-queries {
+  margin-top: 42px;
+}
+
+.queries-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.query-count {
+  color: #398052;
+  background: #e6f2e5;
+  padding: 8px 13px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.query-list {
+  display: grid;
+  gap: 18px;
+}
+
+.query-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.query-card-top small {
+  color: #89938a;
+  font-size: 12px;
+}
+
+.query-status {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-pending {
+  color: #9a6700;
+  background: #fff3cd;
+}
+
+.status-answered {
+  color: #216e3a;
+  background: #e1f3e5;
+}
+
+.status-closed {
+  color: #5d6670;
+  background: #edf0f2;
+}
+
+.query-card h3 {
+  margin: 20px 0;
+  color: #294936;
+  line-height: 1.5;
+}
+
+.query-waiting,
+.query-closed {
+  color: #788579;
+  font-size: 14px;
+}
+
+.farmer-response {
+  padding: 20px;
+  border-radius: 11px;
+  background: #edf5eb;
+}
+
+.farmer-response h4 {
+  color: #286b43;
+  margin-bottom: 12px;
+}
+
+.farmer-response p {
+  color: #405c48;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.farmer-response small {
+  display: block;
+  margin: 12px 0;
+  color: #788579;
+}
+
+.farmer-response button {
+  margin-top: 10px;
+}
+
+.ask-empty,
+.ask-message {
+  background: white;
+  border-radius: 14px;
+  padding: 35px;
+  text-align: center;
+  color: #788579;
+}
+
+.ask-empty span {
+  font-size: 38px;
+}
+
+.ask-empty h3 {
+  color: #294936;
+  margin: 12px 0;
+}
+
+@media (max-width: 600px) {
+  .ask-page {
+    padding: 30px 15px;
+  }
+
+  .ask-header h1 {
+    font-size: 29px;
+  }
+
+  .ask-form-card,
+  .query-card {
+    padding: 20px;
+  }
+
+  .queries-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

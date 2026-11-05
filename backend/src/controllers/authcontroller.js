@@ -1,5 +1,5 @@
-const User = require("../models/User");
-const Farmer = require("../models/Farmer");
+const User = require("../models/user");
+const Farmer = require("../models/farmer");
 const bcrypt = require("bcryptjs");
 
 // User Registration
@@ -247,9 +247,127 @@ const getMe = async (req, res) => {
     });
   }
 };
+
+const forgotPassword = async (req, res) => {
+  try {
+    const email = String(req.body.email || "").trim().toLowerCase();
+
+    if (!email) {
+      return res.status(400).json({
+        message: "Email address is required"
+      });
+    }
+
+    const user = await User.findOne({ email });
+
+    // Return the same response whether the account exists or not.
+    const genericMessage =
+      "If an account with that email exists, a password reset link has been sent.";
+
+    if (!user) {
+      return res.status(200).json({ message: genericMessage });
+    }
+
+    // Generate a secure random token.
+    const resetToken = crypto.randomBytes(32).toString("hex");
+
+    // Store only the SHA-256 hash in MongoDB.
+    user.resetPasswordToken = crypto
+      .createHash("sha256")
+      .update(resetToken)
+      .digest("hex");
+
+    // Token expires in 15 minutes.
+    user.resetPasswordExpires = Date.now() + 15 * 60 * 1000;
+
+    await user.save();
+
+    const resetUrl =
+      `${process.env.FRONTEND_URL}/reset-password?token=${resetToken}`;
+
+    try {
+      await sendPasswordResetEmail(user.email, resetUrl);
+    } catch (emailError) {
+      console.error("Password reset email failed:", emailError.message);
+
+      // Do not leave a usable token when email delivery fails.
+      user.resetPasswordToken = null;
+      user.resetPasswordExpires = null;
+      await user.save();
+    }
+
+    return res.status(200).json({ message: genericMessage });
+
+  } catch (error) {
+    console.error("Forgot password error:", error.message);
+
+    res.status(500).json({
+      message: "Unable to process your request. Please try again later."
+    });
+  }
+};
+
+
+const resetPassword = async (req, res) => {
+  try {
+    const { token, password } = req.body;
+
+    if (!token || !password) {
+      return res.status(400).json({
+        message: "Reset token and new password are required"
+      });
+    }
+
+    if (password.length < 8) {
+      return res.status(400).json({
+        message: "Password must contain at least 8 characters"
+      });
+    }
+
+    // Hash the received token to compare with the stored hash.
+    const hashedToken = crypto
+      .createHash("sha256")
+      .update(token)
+      .digest("hex");
+
+    // Find a matching, non-expired reset token.
+    const user = await User.findOne({
+      resetPasswordToken: hashedToken,
+      resetPasswordExpires: { $gt: new Date() }
+    }).select("+resetPasswordToken +resetPasswordExpires");
+
+    if (!user) {
+      return res.status(400).json({
+        message: "Invalid or expired password reset link"
+      });
+    }
+
+    // Hash and save the new password.
+    user.password = await bcrypt.hash(password, 12);
+
+    // Invalidate the reset token after successful use.
+    user.resetPasswordToken = null;
+    user.resetPasswordExpires = null;
+
+    await user.save();
+
+    res.status(200).json({
+      message: "Password reset successful. Please login with your new password."
+    });
+
+  } catch (error) {
+    console.error("Reset password error:", error.message);
+
+    res.status(500).json({
+      message: "Password reset failed. Please try again."
+    });
+  }
+};
 module.exports = {
   registerUser,
   registerFarmer,
   loginUser,
-  getMe
+  getMe,
+  forgotPassword,
+  resetPassword
 };

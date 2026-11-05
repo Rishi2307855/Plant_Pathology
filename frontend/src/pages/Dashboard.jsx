@@ -1,67 +1,142 @@
 
 import { useNavigate } from "react-router-dom";
+import "./Dashboard.css";
 
 function Dashboard() {
   const navigate = useNavigate();
 
-  const user = JSON.parse(localStorage.getItem("user") || "null");
+  let user = null;
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    navigate("/login");
-  };
+  try {
+    user = JSON.parse(localStorage.getItem("user") || "null");
+  } catch {
+    user = null;
+  }
+
+  const commonFeatures = [
+  {
+    icon: "🔬",
+    title: "Disease Detection",
+    description: "Upload a leaf image to identify plant diseases.",
+    button: "Detect Disease",
+    path: "/predict",
+  },
+  {
+    icon: "📋",
+    title: "Prediction History",
+    description: "View your previous disease predictions.",
+    button: "View History",
+    path: "/history",
+  },
+  {
+    icon: "🌱",
+    title: "Plant Information",
+    description: "Explore plants, diseases and treatments.",
+    button: "Explore Plants",
+    path: "/plants",
+  },
+  {
+    icon: "👤",
+    title: "My Profile",
+    description: "View your account information.",
+    button: "View Profile",
+    path: "/profile",
+  },
+];
+
+const features =
+  user?.role === "farmer"
+    ? [
+        ...commonFeatures,
+        {
+          icon: "💬",
+          title: "Farmer Queries",
+          description: "Answer questions submitted by plant owners.",
+          button: "View Questions",
+          path: "/farmer-queries",
+        },
+      ]
+    : user?.role === "user"
+    ? [
+        ...commonFeatures,
+        {
+          icon: "🌾",
+          title: "Ask a Farmer",
+          description: "Get farming advice from experienced farmers.",
+          button: "Ask a Question",
+          path: "/ask-farmer",
+        },
+      ]
+    : [
+    {
+      icon: "👥",
+      title: "User Management",
+      description: "View registered users and farmers and manage account access.",
+      button: "Manage Users",
+      path: "/admin/users",
+    },
+    {
+      icon: "🌱",
+      title: "Plant Information",
+      description: "Explore plants and diseases.",
+      button: "Explore Plants",
+      path: "/plants",
+    },
+    {
+      icon: "👤",
+      title: "My Profile",
+      description: "View your account information.",
+      button: "View Profile",
+      path: "/profile",
+    },
+  ];
 
   return (
-    <div className="dashboard-page">
-      <div className="dashboard-header">
+    <main className="dashboard-page">
+      <section className="dashboard-hero">
         <div>
-          <span className="eyebrow">PLANT PATHOLOGY</span>
+          <span className="hero-label">YOUR PLANT HEALTH SPACE</span>
           <h1>Welcome, {user?.name || "User"}!</h1>
-          <p>Your plant health dashboard</p>
+          <p>Healthy plants. A greener tomorrow.</p>
+        </div>
+        <span className="hero-leaf">🌿</span>
+      </section>
+
+      <section className="dashboard-grid">
+        {features.map((feature) => (
+          <article className="dashboard-card" key={feature.title}>
+            <div className="feature-icon">{feature.icon}</div>
+            <h3>{feature.title}</h3>
+            <p>{feature.description}</p>
+            <button onClick={() => navigate(feature.path)}>
+              {feature.button} <span>→</span>
+            </button>
+          </article>
+        ))}
+      </section>
+
+      <section className="account-card">
+        <div className="account-heading">
+          <span>👤</span>
+          <h2>Account Information</h2>
         </div>
 
-        <button className="logout-button" onClick={handleLogout}>
-          Logout
-        </button>
-      </div>
-
-      <div className="dashboard-grid">
-        <div className="dashboard-card">
-          <span>🔬</span>
-          <h3>Disease Detection</h3>
-          <p>Upload a Tomato leaf image to identify possible diseases.</p>
-          <button onClick={() => navigate("/predict")}>
-            Detect Disease
-          </button>
+        <div className="account-details">
+          <div>
+            <small>Name</small>
+            <p>{user?.name || "Not available"}</p>
+          </div>
+          <div>
+            <small>Email</small>
+            <p>{user?.email || "Not available"}</p>
+          </div>
+          <div>
+            <small>Role</small>
+            <p>{user?.role || "User"}</p>
+          </div>
         </div>
-
-        <div className="dashboard-card">
-          <span>📋</span>
-          <h3>Prediction History</h3>
-          <p>View your previously analysed leaf images and results.</p>
-          <button onClick={() => navigate("/history")}>
-            View History
-          </button>
-        </div>
-
-        <div className="dashboard-card">
-          <span>🌱</span>
-          <h3>Plant Information</h3>
-          <p>Explore plants, diseases, symptoms and treatments.</p>
-          <button onClick={() => navigate("/plants")}>
-            Explore Plants
-          </button>
-        </div>
-      </div>
-
-      <div className="account-card">
-        <h3>Account Information</h3>
-        <p><strong>Name:</strong> {user?.name}</p>
-        <p><strong>Email:</strong> {user?.email}</p>
-        <p><strong>Role:</strong> {user?.role}</p>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
 
